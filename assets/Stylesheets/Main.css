@@ -110,15 +110,6 @@ body {
     box-shadow:0 16px 40px rgba(0,0,0,0.7);
     filter:brightness(1.05);
   }
-  .contact-btn{
-    padding:12px 20px; 
-    background:linear-gradient(135deg,#48c6ef,#6f86ff); 
-    color:#000; font-weight:600;
-    border-radius:16px; text-decoration:none; display:inline-block; margin-top:20px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.45);
-    border:1px solid rgba(255,255,255,0.2);
-    transition:transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-  }
 
   /* Skills grid */
   #skills h2{ margin-bottom:10px; }
