@@ -1,116 +1,169 @@
-  const slider = document.getElementById('themeSlider');
-  const icon   = document.getElementById('theme-icon');
-  const body   = document.body;
-  const THEME_KEY = 'theme';
+'use strict';
 
-  // SVG icons
-  const sunSVG = `
-    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="12" cy="12" r="4.2" fill="#FFC857"/>
-      <g stroke="#FFC857" stroke-width="1.6" stroke-linecap="round">
-        <line x1="12" y1="2" x2="12" y2="4.2" />
-        <line x1="12" y1="19.8" x2="12" y2="22" />
-        <line x1="4.22" y1="4.22" x2="5.76" y2="5.76" />
-        <line x1="18.24" y1="18.24" x2="19.78" y2="19.78" />
-        <line x1="2" y1="12" x2="4.2" y2="12" />
-        <line x1="19.8" y1="12" x2="22" y2="12" />
-        <line x1="4.22" y1="19.78" x2="5.76" y2="18.24" />
-        <line x1="18.24" y1="5.76" x2="19.78" y2="4.22" />
-      </g>
-    </svg>
-  `;
-
-  const moonSVG = `
-    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M20.4 14.2A7.6 7.6 0 0 1 10 3.6 7.7 7.7 0 1 0 20.4 14.2Z"
-        fill="#F4F4FB" stroke="#C2C4FF" stroke-width="1.3" />
-      <circle cx="13.5" cy="9.5" r="0.8" fill="#C2C4FF"/>
-      <circle cx="15.3" cy="12.4" r="0.6" fill="#C2C4FF"/>
-    </svg>
-  `;
-
-  function applyTheme(mode) {
-    if (mode === 'light') {
-      body.classList.add('light');
-      icon.innerHTML = sunSVG;
-      slider.checked = true;
-    } else {
-      body.classList.remove('light');
-      icon.innerHTML = moonSVG;
-      slider.checked = false;
-    }
-    localStorage.setItem(THEME_KEY, mode);
-  }
-
-  // انتخاب تم بر اساس ساعت سیستم اگر چیزی ذخیره نشده
-  function getTimeBasedTheme() {
-    const hour = new Date().getHours(); // 0-23
-    // مثلاً 7 صبح تا 7 شب تم روشن، بقیه تیره
-    return (hour >= 7 && hour < 19) ? 'light' : 'dark';
-  }
-
-  // Init theme on load
-  (function initTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved === 'light' || saved === 'dark') {
-      applyTheme(saved);
-    } else {
-      const timeTheme = getTimeBasedTheme();
-      applyTheme(timeTheme);
-    }
-  })();
-
-  // Toggle theme on slider change
-  slider.addEventListener('change', () => {
-    const mode = slider.checked ? 'light' : 'dark';
-    applyTheme(mode);
+(() => {
+  const root = document.documentElement;
+  const themeButton = document.querySelector('.theme-toggle');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const updateThemeControl = () => {
+    const isDark = root.dataset.theme !== 'light';
+    themeButton.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} theme`);
+    themeMeta.content = isDark ? '#171a16' : '#f7f7f0';
+  };
+  themeButton.hidden = false;
+  updateThemeControl();
+  themeButton.addEventListener('click', () => {
+    const theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+    root.dataset.theme = theme;
+    // Storage may be disabled in private or embedded browsing contexts.
+    try { localStorage.setItem('theme', theme); } catch {}
+    updateThemeControl();
   });
 
-  // ScrollReveal animations
-  ScrollReveal().reveal('h1, h2', { distance:'40px', origin:'bottom', duration:800 });
-  ScrollReveal().reveal('.card, .timeline-item', { distance:'60px', origin:'left', duration:900, interval:200 });
-  ScrollReveal().reveal('.profile-pic', { scale:0.85, duration:1000 });
+  const menuButton = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('#mobile-nav');
+  menuButton.hidden = false;
+  const setMenu = (open) => {
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    mobileNav.hidden = !open;
+  };
+  menuButton.addEventListener('click', () => setMenu(mobileNav.hidden));
+  mobileNav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (!mobileNav.hidden && !event.target.closest('.site-header')) setMenu(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !mobileNav.hidden) {
+      setMenu(false);
+      menuButton.focus();
+    }
+  });
+  window.matchMedia('(min-width: 601px)').addEventListener('change', (event) => {
+    if (event.matches) setMenu(false);
+  });
 
-  // ===== Certificates modal logic =====
-  const certCards = document.querySelectorAll('.cert-card');
-  const certModal = document.getElementById('certModal');
-  const certModalImg = document.getElementById('certModalImg');
-  const certModalTitle = document.getElementById('certModalTitle');
-  const certModalOverlay = certModal.querySelector('.modal-overlay');
-  const certModalClose = certModal.querySelector('.modal-close');
+  const cards = [...document.querySelectorAll('.certificate')];
+  const filterButtons = [...document.querySelectorAll('[data-filter]')];
+  const showMore = document.querySelector('#show-certificates');
+  const count = document.querySelector('.certificate-count');
+  let activeFilter = 'all';
+  let expanded = false;
+  const updateCertificates = () => {
+    const matching = cards.filter(card => activeFilter === 'all' || card.dataset.category === activeFilter);
+    const visible = new Set(expanded || activeFilter !== 'all' ? matching : matching.slice(0, 6));
+    cards.forEach(card => { card.hidden = !visible.has(card); });
+    count.textContent = `Showing ${visible.size} of ${matching.length} certificates`;
+    showMore.hidden = activeFilter !== 'all' || matching.length <= 6;
+    showMore.setAttribute('aria-expanded', String(expanded));
+    showMore.textContent = expanded ? 'Show fewer certificates ↑' : `View all ${matching.length} certificates ↓`;
+    filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === activeFilter)));
+  };
+  document.querySelector('.certificate-toolbar').hidden = false;
+  document.querySelector('.filters').addEventListener('click', (event) => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    expanded = false;
+    updateCertificates();
+  });
+  showMore.addEventListener('click', () => {
+    expanded = !expanded;
+    updateCertificates();
+    if (expanded) {
+      // Move keyboard focus to the first newly revealed credential.
+      cards[6]?.focus({ preventScroll: true });
+    } else {
+      document.querySelector('.certificate-toolbar').scrollIntoView({ block: 'start' });
+    }
+  });
+  updateCertificates();
 
-  function openCertModal(imgSrc, title) {
-    certModalImg.src = imgSrc;
-    certModalImg.alt = title;
-    certModalTitle.textContent = title || 'Certificate';
-    certModal.classList.add('show');
-    certModal.setAttribute('aria-hidden', 'false');
-  }
+  const dialog = document.querySelector('.certificate-dialog');
+  const preview = dialog.querySelector('.dialog-image');
+  const previewStatus = dialog.querySelector('.image-status');
+  const originalLink = dialog.querySelector('.original-link');
+  let openedFrom = null;
 
-  function closeCertModal() {
-    certModal.classList.remove('show');
-    certModal.setAttribute('aria-hidden', 'true');
-    // کمی تاخیر برای انیمیشن اگر خواستی می‌تونی برداری
-    setTimeout(() => {
-      certModalImg.src = '';
-    }, 200);
-  }
-
-  certCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const imgSrc = card.dataset.img;
-      const title = card.dataset.title || card.textContent.trim();
-      if (imgSrc) {
-        openCertModal(imgSrc, title);
+  // Real links remain the fallback in browsers without native dialog support.
+  if (typeof dialog.showModal === 'function') {
+    cards.forEach(card => card.setAttribute('aria-haspopup', 'dialog'));
+    document.querySelector('.certificate-grid').addEventListener('click', (event) => {
+      const card = event.target.closest('.certificate');
+      if (!card || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      event.preventDefault();
+      openedFrom = card;
+      dialog.querySelector('#dialog-title').textContent = card.dataset.title;
+      preview.alt = `Certificate: ${card.dataset.title}`;
+      preview.hidden = true;
+      previewStatus.hidden = false;
+      previewStatus.textContent = 'Loading certificate…';
+      originalLink.href = card.href;
+      preview.src = card.href;
+      dialog.showModal();
+      document.body.classList.add('dialog-open');
+    });
+    preview.addEventListener('load', () => {
+      preview.hidden = false;
+      previewStatus.hidden = true;
+    });
+    preview.addEventListener('error', () => {
+      preview.hidden = true;
+      previewStatus.hidden = false;
+      previewStatus.textContent = 'The preview could not load. Use “Open original” below to view the certificate.';
+    });
+    const closeButton = dialog.querySelector('.dialog-close');
+    closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('keydown', (event) => {
+      if (event.key !== 'Tab') return;
+      if (event.shiftKey && document.activeElement === closeButton) {
+        event.preventDefault();
+        originalLink.focus();
+      } else if (!event.shiftKey && document.activeElement === originalLink) {
+        event.preventDefault();
+        closeButton.focus();
       }
     });
-  });
+    // Only dismiss a click on the backdrop, not the image or dialog padding.
+    dialog.addEventListener('click', (event) => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      document.body.classList.remove('dialog-open');
+      preview.removeAttribute('src');
+      openedFrom?.focus({ preventScroll: true });
+    });
+  }
 
-  certModalOverlay.addEventListener('click', closeCertModal);
-  certModalClose.addEventListener('click', closeCertModal);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && certModal.classList.contains('show')) {
-      closeCertModal();
+  // Native observers replace the blocking third-party animation dependency.
+  if ('IntersectionObserver' in window) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!reducedMotion.matches) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('[data-reveal]').forEach(element => revealObserver.observe(element));
     }
-  });
+
+    const navigationLinks = [...document.querySelectorAll('.desktop-nav a')];
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navigationLinks.forEach(link => {
+          if (link.hash === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-15% 0px -55% 0px', threshold: 0 });
+    document.querySelectorAll('main > section[id]').forEach(section => sectionObserver.observe(section));
+  }
+  document.querySelector('#year').textContent = String(new Date().getFullYear());
+})();

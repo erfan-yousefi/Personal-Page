@@ -1,180 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/assets/Stylesheets/Main.css">
-  <link rel="stylesheet" href="/assets/Stylesheets/Nav.css">
-  <link rel="stylesheet" href="/assets/Stylesheets/Toggle.css">
-  <title>Erfan — Portfolio</title>
-
-
-  <!-- ScrollReveal -->
-  <script src="https://unpkg.com/scrollreveal"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Erfan Yousefi — backend developer and Data Science student at FAU. Explore my experience in software development, data analytics, and machine learning.">
+  <meta name="theme-color" content="#171a16">
+  <meta property="og:title" content="Erfan Yousefi — Developer & Data Science Student">
+  <meta property="og:description" content="Thoughtful code. Meaningful impact. My work across backend development, data analytics, and machine learning.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://erfanyousefi.me/">
+  <meta property="og:image" content="https://erfanyousefi.me/assets/img/Pic.jpg">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <title>Erfan Yousefi — Developer & Data Science Student</title>
+  <script>
+    try {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    } catch {}
+  </script>
+  <link rel="stylesheet" href="assets/Stylesheets/Main.css">
+  <script src="assets/Scripts/Main.js" defer></script>
 </head>
-
 <body>
-
-  <!-- Theme toggle with SVG moon/sun -->
-  <div class="theme-toggle">
-    <span id="theme-icon"></span>
-    <label class="switch">
-      <input type="checkbox" id="themeSlider">
-      <span class="slider"></span>
-    </label>
-  </div>
-
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#certificates">Certificates</a></li>
-    </ul>
-  </nav>
-
-  <section id="home">
-    <!-- <center> -->
-    <img src="/assets/img/Pic.jpg" class="profile-pic" />
-    <h1 style="margin-top:20px;">Hi, I'm Erfan 👋</h1>
-    <p style="margin-top:10px; max-width:600px; font-size:18px; line-height:1.6;">
-      Backend Developer • Data Science Student at FAU • Machine Learning Enthusiast
-    </p>
-    <a href="https://www.linkedin.com/in/erfan-yousefi" class="resume-btn" target="_blank">Linkedin Profile</a>
-    <a href="mailto:erfan.yousefi@fau.de" class="resume-btn">Contact Me</a>
-    <!-- </center> -->
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>Siemens Healthineers - Werkstudent</h3>
-          <p>Data Analytics and Dashboarding</p>
-        </div>
-        <div class="timeline-item">
-          <h3>Hamsoonegaran Ati Saz — Backend Developer</h3>
-          <p>Implementation of database integrations and process digitalization.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>FaraPardazan Arvand Omid — Internship .NET Developer</h3>
-          <p>Development of backend functionalities using ASP.NET.
-            Application of Clean Architecture principles and design patterns</p>
-        </div>
-        <div class="timeline-item">
-          <h3>Islamic Azad-University – Tehran Central Branch</h3>
-          <p>Developed a student course registration system.
-            Automated the registration process based on predefined criteria.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>Dolphin Company — Backend Developer</h3>
-          <p>Worked on an English Institute LMS, backend architecture with C# and ASP.NET Core.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>Petro Pala Toos — IT Specialist</h3>
-          <p>System admin + internal development tools.</p>
-        </div>
-
-
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+    <symbol id="icon-right" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></symbol>
+    <symbol id="icon-data" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></symbol>
+    <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 3v17h17M8 15v-4m5 4V6m5 9V9"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="#home" aria-label="Erfan Yousefi, home"><span class="brand-mark">ey<span>.</span></span><span class="brand-name">Erfan Yousefi</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="#experience">Experience</a><a href="#skills">Expertise</a><a href="#certificates">Certificates</a></nav>
+      <div class="header-actions">
+        <button class="theme-toggle icon-button" type="button" aria-label="Switch to light theme" hidden><svg class="sun-icon" aria-hidden="true"><use href="#icon-sun"/></svg><svg class="moon-icon" aria-hidden="true"><use href="#icon-moon"/></svg></button>
+        <a class="header-contact" href="#contact">Let's talk <svg aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        <button class="menu-toggle icon-button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation" type="button" hidden><span></span><span></span></button>
       </div>
     </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-      <div class="card">ASP.NET, ASP.NET Core, C#, Python, Java, JavaScript, PHP,Jquery</div>
-      <div class="card">SQL, MySQL, MSSQL, SSMS</div>
-      <div class="card">HTML, CSS, MVC, WordPress, Joomla, CMS, LMS</div>
-      <div class="card">Git, MATLAB, Microsoft Office,Microsoft Power BI,Proteus, CodeVision,Trello</div>
-    </div>
-  </section>
-
-  <section id="certificates">
-    <h2>Certificates</h2>
-    <div class="card cert-card" data-img="/assets/img/Certificates/C-Sharp-1.jpg" data-title="Introduction to C#">
-      Introduction to C#
-    </div>
-
-    <div class="card cert-card" data-img="/assets/img/Certificates/Machine-Learning-1.jpg"
-      data-title="Machine Learning">
-      Machine Learning
-    </div>
-
-    <div class="card cert-card" data-img="/assets/img/Certificates/HTML-1.jpg" data-title="HTML">
-      HTML
-    </div>
-
-    <div class="card cert-card" data-img="/assets/img/Certificates/CSS-1.jpg" data-title="CSS">
-      CSS
-    </div>
-
-    <div class="card cert-card" data-img="/assets/img/Certificates/Java-1.jpg" data-title="Java">
-      Java
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Power-BI-1.jpg" data-title="Power BI">
-      Power BI
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Python-1.jpg" data-title="Python">
-      Python
-    </div>
-    <div class="card cert-card"
-      data-img="/assets/img/Certificates/Supervised-Machine-Learning-Regression-and-Classification-1.jpg"
-      data-title="Supervised Machine Learning: Regression and Classification">
-      Supervised-Machine-Learning-Regression-and-Classification
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Advanced-Learning-Algorithms-1.jpg"
-      data-title="Advanced Learning Algorithms">
-      Advanced-Learning-Algorithms
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Unsupervised-Learning-Recommenders-1.jpg"
-      data-title="Unsupervised Learning: Recommenders">
-      Unsupervised-Learning-Recommenders
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Linear-Algebra-from-Elementary-Advanced-1.jpg"
-      data-title="Linear Algebra: From Elementary to Advanced">
-      Linear-Algebra-from-Elementary-Advanced
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Linear-Algebra-Linear-Systems-and-Matrix-1.jpg"
-      data-title="Linear-Algebra-Linear-Systems-and-Matrix">
-      Linear-Algebra-Linear-Systems-and-Matrix
-    </div>
-    <div class="card cert-card" data-img="/assets/img/Certificates/Linear Algebra-Matrix Algebra,-Determinants,-&-1.jpg"
-      data-title="Linear Algebra-Matrix Algebra,-Determinants">
-      Linear Algebra-Matrix Algebra,-Determinants
-    </div>
-    <div class="card cert-card"
-      data-img="/assets/img/Certificates/Linear-Algebra-Orthogonality-and-Diagonalization-1.jpg"
-      data-title="Linear-Algebra-Orthogonality-and-Diagonalization">
-      Linear-Algebra-Orthogonality-and-Diagonalization
-    </div>
-    <!-- <div class="card cert-card" 
-       data-img="/assets/img/Certificates/Linear Algebra-Matrix Algebra,-Determinants,-&-1.jpg" 
-       data-title="Power BI">
-    Power BI
-  </div> -->
-  </section>
-
-  <!-- Modal for certificates -->
-  <div id="certModal" class="modal" aria-hidden="true">
-    <div class="modal-overlay"></div>
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
-      <div class="modal-header">
-        <div id="certModalTitle" class="modal-title">Certificate</div>
-        <button class="modal-close" aria-label="Close certificate view">&times;</button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#home">Home <span>01</span></a><a href="#experience">Experience <span>02</span></a><a href="#skills">Expertise <span>03</span></a><a href="#certificates">Certificates <span>04</span></a><a href="#contact">Get in touch <span>↗</span></a></nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="hero container" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow"><span class="status-dot"></span> Backend developer & data science student</p>
+        <h1 id="hero-title">Thoughtful code.<br><em>Meaningful</em><br>impact<span class="accent">.</span></h1>
+        <p class="hero-description">I'm Erfan Yousefi. I connect software engineering with data science to build useful systems and uncover what the data has to say.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#experience">Explore my experience <svg aria-hidden="true"><use href="#icon-right"/></svg></a><a class="text-link" href="https://www.linkedin.com/in/erfan-yousefi" target="_blank" rel="noopener noreferrer">LinkedIn <svg aria-hidden="true"><use href="#icon-arrow"/></svg><span class="sr-only"> (opens in a new tab)</span></a></div>
+        <div class="hero-footnote"><span class="mini-label">THE INTERSECTION OF</span><p>Engineering <span>×</span> Data <span>×</span> Curiosity</p></div>
       </div>
-      <div class="modal-body">
-        <img id="certModalImg" src="" alt="Certificate preview" />
+      <div class="hero-visual">
+        <div class="portrait-card">
+          <div class="portrait-top"><span>HELLO, I'M ERFAN</span><span aria-hidden="true">↗</span></div>
+          <div class="portrait-orbit" aria-hidden="true"></div>
+          <picture><source srcset="assets/img/portrait.webp" type="image/webp"><img class="portrait" src="assets/img/Pic.jpg" width="600" height="600" alt="Erfan Yousefi" fetchpriority="high"></picture>
+          <div class="portrait-caption"><span>Erfan Yousefi</span><span>Developer.<br>Always a student.</span></div>
+        </div>
+        <div class="focus-note"><span class="focus-icon"><svg aria-hidden="true"><use href="#icon-code"/></svg></span><div><span class="mini-label">BUILT ON CURIOSITY</span><p>From backend to bigger questions.</p></div><span class="note-dot" aria-hidden="true"></span></div>
+        <span class="visual-coordinate" aria-hidden="true">CODE / DATA / CONTINUOUS LEARNING</span>
       </div>
-    </div>
-  </div>
-  <script src="/assets/Scripts/Main.js"></script>
-  <footer>
-    © 2026 Erfan Yousefi — All Rights Reserved
-  </footer>
+      <a class="scroll-cue" href="#about"><span>Keep exploring</span><span aria-hidden="true">↓</span></a>
+    </section>
+    <section class="about-band" id="about" aria-label="About me"><div class="container about-grid"><p class="eyebrow">A little about me <span aria-hidden="true">↘</span></p><div><h2>A developer's mindset.<br><span class="muted">A data scientist's curiosity.</span></h2><p>My experience spans backend systems, database integrations, and analytics. Alongside studying Data Science at FAU, I'm exploring machine learning and the mathematics behind it.</p></div><div class="about-facts"><div><span class="mini-label">STUDYING</span><p>Data Science <span>@ FAU</span></p></div><div><span class="mini-label">EXPERIENCE ACROSS</span><p>Software <span>& analytics</span></p></div></div></div></section>
+    <section class="section container" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">01 /</span> The journey so far</p><h2 id="experience-title">Experience that<br><em>shapes my thinking.</em></h2></div><p>From building backend systems to making data easier to understand.</p></div>
+      <div class="experience-list">
+        <article class="experience-row featured" data-reveal><span class="experience-number">01</span><div class="experience-company"><h3>Siemens Healthineers</h3><span class="role-label">Werkstudent</span></div><div class="experience-detail"><p>Data analytics and dashboarding, bringing information into focus.</p><div class="tags"><span>Data analytics</span><span>Dashboarding</span></div></div><svg class="row-arrow" aria-hidden="true"><use href="#icon-arrow"/></svg></article>
+        <article class="experience-row" data-reveal><span class="experience-number">02</span><div class="experience-company"><h3>Hamsoonegaran Ati Saz</h3><span class="role-label">Backend Developer</span></div><div class="experience-detail"><p>Implemented database integrations and helped digitalize business processes.</p><div class="tags"><span>Database integration</span><span>Digitalization</span></div></div></article>
+        <article class="experience-row" data-reveal><span class="experience-number">03</span><div class="experience-company"><h3>FaraPardazan Arvand Omid</h3><span class="role-label">.NET Developer · Internship</span></div><div class="experience-detail"><p>Developed backend functionality with ASP.NET, applying Clean Architecture principles and design patterns.</p><div class="tags"><span>ASP.NET</span><span>Clean Architecture</span></div></div></article>
+        <article class="experience-row" data-reveal><span class="experience-number">04</span><div class="experience-company"><h3>Islamic Azad University</h3><span class="role-label">Tehran Central Branch</span></div><div class="experience-detail"><p>Developed a student course registration system and automated registration based on predefined criteria.</p><div class="tags"><span>Education systems</span><span>Automation</span></div></div></article>
+        <article class="experience-row" data-reveal><span class="experience-number">05</span><div class="experience-company"><h3>Dolphin Company</h3><span class="role-label">Backend Developer</span></div><div class="experience-detail"><p>Worked on an English institute's learning management system, with backend architecture in C# and ASP.NET Core.</p><div class="tags"><span>C#</span><span>ASP.NET Core</span><span>LMS</span></div></div></article>
+        <article class="experience-row" data-reveal><span class="experience-number">06</span><div class="experience-company"><h3>Petro Pala Toos</h3><span class="role-label">IT Specialist</span></div><div class="experience-detail"><p>Supported system administration and developed internal tools.</p><div class="tags"><span>IT systems</span><span>Internal tooling</span></div></div></article>
+      </div>
+    </section>
+    <section class="expertise-section" id="skills" aria-labelledby="skills-title"><div class="container section">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">02 /</span> My toolkit</p><h2 id="skills-title">Different tools.<br><em>One curious mind.</em></h2></div><p>A foundation in software engineering, with an expanding perspective on data.</p></div>
+      <div class="skills-grid">
+        <article class="skill-card skill-primary" data-reveal><div class="skill-top"><svg aria-hidden="true"><use href="#icon-code"/></svg><span>01</span></div><h3>Backend & languages</h3><p>The logic behind the experience. Building the systems that make things work.</p><div class="skill-tags"><span>C#</span><span>ASP.NET Core</span><span>ASP.NET</span><span>Python</span><span>Java</span><span>JavaScript</span><span>PHP</span><span>jQuery</span></div><div class="code-motif" aria-hidden="true"><span>idea</span><b>→</b><span>logic</span><b>→</b><span>impact</span></div></article>
+        <article class="skill-card " data-reveal><div class="skill-top"><svg aria-hidden="true"><use href="#icon-data"/></svg><span>02</span></div><h3>Databases</h3><p>Giving information structure, and connecting it to the applications that need it.</p><div class="skill-tags"><span>SQL</span><span>MySQL</span><span>MS SQL Server</span><span>SSMS</span></div></article>
+        <article class="skill-card " data-reveal><div class="skill-top"><svg aria-hidden="true"><use href="#icon-grid"/></svg><span>03</span></div><h3>Web & platforms</h3><p>From web foundations to content and learning management systems.</p><div class="skill-tags"><span>HTML</span><span>CSS</span><span>MVC</span><span>WordPress</span><span>Joomla</span><span>CMS</span><span>LMS</span></div></article>
+        <article class="skill-card skill-tools" data-reveal><div class="skill-top"><svg aria-hidden="true"><use href="#icon-chart"/></svg><span>04</span></div><h3>Analytics & everyday tools</h3><p>Exploring data, collaborating on code, and keeping the work moving.</p><div class="skill-tags"><span>Power BI</span><span>MATLAB</span><span>Git</span><span>Microsoft Office</span><span>Trello</span><span>Proteus</span><span>CodeVision</span></div></article>
+      </div></div>
+    </section>
+    <section class="section container" id="certificates" aria-labelledby="certificates-title">
+      <div class="section-heading"><div><p class="eyebrow"><span class="section-number">03 /</span> Never stop learning</p><h2 id="certificates-title">Curiosity,<br><em>put into practice.</em></h2></div><p>A growing collection of learning across development, machine learning, and mathematics.</p></div>
+      <div class="certificate-toolbar" hidden><div class="filters" role="group" aria-label="Filter certificates"><button type="button" data-filter="all" aria-pressed="true">All <span>14</span></button><button type="button" data-filter="ml" aria-pressed="false">Machine learning</button><button type="button" data-filter="development" aria-pressed="false">Development</button><button type="button" data-filter="data" aria-pressed="false">Data & mathematics</button></div><p class="certificate-count" role="status" aria-live="polite"></p></div>
+      <div class="certificate-grid">
+        <a class="certificate" href="assets/img/Certificates/Machine-Learning-1.jpg" data-category="ml" data-title="Machine Learning" aria-label="View certificate: Machine Learning"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-1.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Machine learning</span><h3>Machine Learning</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Advanced-Learning-Algorithms-1.jpg" data-category="ml" data-title="Advanced Learning Algorithms" aria-label="View certificate: Advanced Learning Algorithms"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-2.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Machine learning</span><h3>Advanced Learning Algorithms</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Supervised-Machine-Learning-Regression-and-Classification-1.jpg" data-category="ml" data-title="Supervised Machine Learning: Regression and Classification" aria-label="View certificate: Supervised Machine Learning: Regression and Classification"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-3.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Machine learning</span><h3>Supervised Machine Learning: Regression and Classification</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Unsupervised-Learning-Recommenders-1.jpg" data-category="ml" data-title="Unsupervised Learning: Recommenders" aria-label="View certificate: Unsupervised Learning: Recommenders"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-4.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Machine learning</span><h3>Unsupervised Learning: Recommenders</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Python-1.jpg" data-category="development" data-title="Python" aria-label="View certificate: Python"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-5.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Development</span><h3>Python</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Power-BI-1.jpg" data-category="data" data-title="Power BI" aria-label="View certificate: Power BI"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-6.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Data & mathematics</span><h3>Power BI</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/C-Sharp-1.jpg" data-category="development" data-title="Introduction to C#" aria-label="View certificate: Introduction to C#"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-7.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Development</span><h3>Introduction to C#</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Java-1.jpg" data-category="development" data-title="Java" aria-label="View certificate: Java"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-8.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Development</span><h3>Java</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/HTML-1.jpg" data-category="development" data-title="HTML" aria-label="View certificate: HTML"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-9.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Development</span><h3>HTML</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/CSS-1.jpg" data-category="development" data-title="CSS" aria-label="View certificate: CSS"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-10.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Development</span><h3>CSS</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Linear-Algebra-from-Elementary-Advanced-1.jpg" data-category="data" data-title="Linear Algebra: From Elementary to Advanced" aria-label="View certificate: Linear Algebra: From Elementary to Advanced"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-11.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Data & mathematics</span><h3>Linear Algebra: From Elementary to Advanced</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Linear-Algebra-Linear-Systems-and-Matrix-1.jpg" data-category="data" data-title="Linear Algebra: Linear Systems and Matrices" aria-label="View certificate: Linear Algebra: Linear Systems and Matrices"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-12.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Data & mathematics</span><h3>Linear Algebra: Linear Systems and Matrices</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Linear%20Algebra-Matrix%20Algebra%2C-Determinants%2C-%26-1.jpg" data-category="data" data-title="Linear Algebra: Matrix Algebra and Determinants" aria-label="View certificate: Linear Algebra: Matrix Algebra and Determinants"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-13.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Data & mathematics</span><h3>Linear Algebra: Matrix Algebra and Determinants</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+        <a class="certificate" href="assets/img/Certificates/Linear-Algebra-Orthogonality-and-Diagonalization-1.jpg" data-category="data" data-title="Linear Algebra: Orthogonality and Diagonalization" aria-label="View certificate: Linear Algebra: Orthogonality and Diagonalization"><div class="certificate-preview"><img src="assets/img/thumbnails/certificate-14.webp" alt="" width="560" height="396" loading="lazy" decoding="async"><span class="certificate-open" aria-hidden="true"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></span></div><div class="certificate-info"><span class="eyebrow">Data & mathematics</span><h3>Linear Algebra: Orthogonality and Diagonalization</h3><span class="certificate-link">View credential <span aria-hidden="true">↗</span></span></div></a>
+      </div>
+      <div class="certificates-more"><button class="button button-outline" id="show-certificates" type="button" aria-expanded="false" hidden>View all 14 certificates <span aria-hidden="true">↓</span></button></div>
+    </section>
+    <section class="contact-section container" id="contact" aria-labelledby="contact-title"><div class="contact-panel"><div class="contact-top"><p class="eyebrow"><span class="status-dot"></span> Good things start with a conversation</p><span aria-hidden="true">04 /</span></div><h2 id="contact-title">Let's build<br>something <em>meaningful.</em></h2><div class="contact-bottom"><p>Have an idea, a question, or a shared curiosity?<br>I'd love to hear from you.</p><a class="contact-link" href="mailto:erfan.yousefi@fau.de">Get in touch <svg aria-hidden="true"><use href="#icon-arrow"/></svg></a></div><a class="email-link" href="mailto:erfan.yousefi@fau.de">erfan.yousefi@fau.de</a></div></section>
+  </main>
+  <footer class="site-footer container"><a class="brand-mark" href="#home" aria-label="Back to top">ey<span>.</span></a><p>© <span id="year">2026</span> Erfan Yousefi</p><div><a href="https://www.linkedin.com/in/erfan-yousefi" target="_blank" rel="noopener noreferrer">LinkedIn ↗<span class="sr-only"> (opens in a new tab)</span></a><a href="#home">Back to top ↑</a></div></footer>
+  <dialog class="certificate-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><div><p class="eyebrow">A step in the learning journey</p><h2 id="dialog-title">Certificate</h2></div><button class="dialog-close icon-button" type="button" aria-label="Close certificate" autofocus>×</button></div><div class="dialog-image-wrap"><p class="image-status" role="status">Loading certificate…</p><img class="dialog-image" alt="" hidden></div><div class="dialog-footer"><span>Press Esc to close</span><a class="original-link" target="_blank" rel="noopener noreferrer">Open original ↗<span class="sr-only"> (opens in a new tab)</span></a></div></dialog>
 </body>
-
 </html>
